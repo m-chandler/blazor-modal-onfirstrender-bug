@@ -1,0 +1,23 @@
+﻿
+<BSModal DataId="modal1" @ref="Modal">
+    <Header>Modal Title</Header>
+    <Content>Woohoo, you're reading this text in a modal!</Content>
+    <Footer Context="modal">
+        <BSButton MarginStart="Margins.Auto" Color="BSColor.Secondary">Close</BSButton>
+        <BSButton Color="BSColor.Primary" OnClick="modal.HideAsync">Save changes</BSButton>
+    </Footer>
+</BSModal>
+
+@code
+{
+    public BSModal Modal { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Modal.ShowAsync();
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
